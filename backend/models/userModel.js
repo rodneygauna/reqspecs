@@ -1,12 +1,19 @@
 import mongoose from "mongoose";
 
-import { requiredStringMaxLength } from "../utils/validation/validationConstants.js";
+import {
+  requiredStringMaxLength,
+  optionalStringMaxLength,
+} from "../utils/validation/validationConstants.js";
 
 const userSchema = new mongoose.Schema(
   {
     // User Name
-    first_name: requiredStringMaxLength("First name", 15),
-    last_name: requiredStringMaxLength("Last name", 25),
+    first_name: requiredStringMaxLength("First name", 50),
+    last_name: requiredStringMaxLength("Last name", 100),
+    // User Title
+    title: optionalStringMaxLength(100),
+    // User Department
+    departmentID: { type: mongoose.Schema.Types.ObjectId, ref: "Department" },
     // User Email and Password Hash
     email: {
       type: String,
