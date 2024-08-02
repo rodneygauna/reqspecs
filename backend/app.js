@@ -25,6 +25,12 @@ app.use(cookieParser());
 // Routes - Users
 import userRoutes from "./routes/userRoutes.js";
 app.use("/api/v1/users", userRoutes);
+// Routes - Companies
+import companyRoutes from "./routes/companyRoutes.js";
+app.use("/api/v1/companies", companyRoutes);
+// Routes - Departments
+import departmentRoutes from "./routes/departmentRoutes.js";
+app.use("/api/v1/departments", departmentRoutes);
 
 // Error handling
 app.use(notFound);
