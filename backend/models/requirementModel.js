@@ -32,11 +32,17 @@ const requirementSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    // Updated Users
+    // Updated Users - array of user_ids and updated_at
     updated_by: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        user_id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+        updated_at: {
+          type: Date,
+          default: Date.now,
+        },
       },
     ],
   },
