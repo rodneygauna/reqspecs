@@ -31,6 +31,15 @@ app.use("/api/v1/companies", companyRoutes);
 // Routes - Departments
 import departmentRoutes from "./routes/departmentRoutes.js";
 app.use("/api/v1/departments", departmentRoutes);
+// Routes - Projects
+import projectRoutes from "./routes/projectRoutes.js";
+app.use("/api/v1/projects", projectRoutes);
+// Routes - Categories
+import categoryRoutes from "./routes/categoryRoutes.js";
+app.use("/api/v1/categories", categoryRoutes);
+// Routes - Requirements
+import requirementRoutes from "./routes/requirementRoutes.js";
+app.use("/api/v1/requirements", requirementRoutes);
 
 // Error handling
 app.use(notFound);
