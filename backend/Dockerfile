@@ -1,13 +1,21 @@
+# Create image based on the official Node image from dockerhub
 FROM node
 
-WORKDIR /app
+# Create app directory
+WORKDIR /usr/src/app
 
-COPY package*.json .
+# Copy dependency definitions
+COPY package.json /usr/src/app/package.json
+COPY package-lock.json /usr/src/app/package-lock.json
 
-RUN npm install
+# Install dependecies
+RUN npm ci
 
-COPY . .
+# Get all the code needed to run the app
+COPY . /usr/src/app
 
+# Expose the port the app runs in
 EXPOSE 3001
 
-CMD ["npm", "start"]
+# Serve the app
+CMD [ "npm", "start"]
