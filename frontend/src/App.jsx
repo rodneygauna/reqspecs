@@ -12,7 +12,7 @@ import HomePage from './pages/HomePage';
 // App
 const App = () => {
 
-  // Router for pages
+  // Routes for pages
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<MainLayout />}>
