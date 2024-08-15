@@ -14,6 +14,7 @@ import LoginPage from "./pages/LoginPage";
 const App = () => {
   // Login User
   const loginUser = async ({ email, password }) => {
+    // Fetch request to the backend
     const response = await fetch('http://localhost:3001/api/v1/users/auth', {
       method: 'POST',
       headers: {
@@ -22,9 +23,11 @@ const App = () => {
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
+    // If the response is not ok, throw an error
     if (!response.ok) {
       throw new Error(data.message);
     }
+    // If the response is ok, store the token in local storage
     if (response.ok) {
       localStorage.setItem('token', data.token);
       return data;
