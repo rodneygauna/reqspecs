@@ -10,10 +10,10 @@ import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import CompanyAddPage from "./pages/CompanyAddPage";
-import ProjectAddPage from "./pages/ProjectAddPage";
-import CategoryAddPage from "./pages/CategoryAddPage";
-import RequirementAddPage from "./pages/RequirementAddPage";
+import CompanyAddPage from "./pages/companyPages/CompanyAddPage";
+import ProjectAddPage from "./pages/projectPages/ProjectAddPage";
+import CategoryAddPage from "./pages/categoryPages/CategoryAddPage";
+import RequirementAddPage from "./pages/requirementPages/RequirementAddPage";
 
 // App
 const App = () => {
