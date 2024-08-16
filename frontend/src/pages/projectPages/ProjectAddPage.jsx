@@ -7,13 +7,15 @@ const ProjectAddPage = ({ projectAddSubmit }) => {
   // Form state
   const [project_name, setProjectName] = useState("");
   const [problem_description, setProblemDescription] = useState("");
-  const [market_segment_description, setMarketSegmentDescription] = useState("");
-  const [solutions_today_description, setSolutionsTodayDescription] = useState("");
+  const [market_segment_description, setMarketSegmentDescription] =
+    useState("");
+  const [solutions_today_description, setSolutionsTodayDescription] =
+    useState("");
   const [goals_description, setGoalsDescription] = useState("");
   const [initatives_description, setInitativesDescription] = useState("");
   const [obstacles_description, setObstaclesDescription] = useState("");
   const [features_description, setFeaturesDescription] = useState("");
-  const [measurements_description, setMeasurementsDescription] = useState("");
+  const [measures_description, setMeasuresDescription] = useState("");
   const [investment_description, setInvestmentDescription] = useState("");
   const [returns_description, setReturnsDescription] = useState("");
   const [epic_link, setEpicLink] = useState("");
@@ -34,7 +36,7 @@ const ProjectAddPage = ({ projectAddSubmit }) => {
       initatives_description,
       obstacles_description,
       features_description,
-      measurements_description,
+      measures_description,
       investment_description,
       returns_description,
       epic_link,
@@ -42,10 +44,9 @@ const ProjectAddPage = ({ projectAddSubmit }) => {
       users: localStorage.getItem("current_user_id"),
     };
 
-
     projectAddSubmit(projectData)
       .then(() => {
-        navigate("/");
+        navigate("/projects");
         toast.success("Company created successfully");
       })
       .catch((error) => {
@@ -205,7 +206,7 @@ const ProjectAddPage = ({ projectAddSubmit }) => {
                   htmlFor="measurements_description"
                   className="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Measurements Description
+                  Measures of Success Description
                 </label>
                 <textarea
                   name="measurements_description"
@@ -213,8 +214,8 @@ const ProjectAddPage = ({ projectAddSubmit }) => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Describe the measurements"
                   required=""
-                  value={measurements_description}
-                  onChange={(e) => setMeasurementsDescription(e.target.value)}
+                  value={measures_description}
+                  onChange={(e) => setMeasuresDescription(e.target.value)}
                 />
               </div>
               <div>
