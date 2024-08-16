@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 
-import ProjectDropdown from "../components/ProjectDropdown";
-import CategoryDropdown from "../components/CategoryDropdown";
+import ProjectDropdown from "../../components/ProjectDropdown";
+import CategoryDropdown from "../../components/CategoryDropdown";
 
 const RequirementAddPage = ({ requirementAddSubmit }) => {
   // Form state
