@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import logo from '/vite.svg';
+import logo from '/logo-423x528.png';
 
 const Navbar = () => {
   const linkClass = ({ isActive }) =>
