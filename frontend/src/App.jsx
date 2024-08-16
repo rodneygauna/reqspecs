@@ -8,11 +8,17 @@ import {
 // Pages
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
+// Pages - Login and Register
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+// Pages - Company
 import CompanyAddPage from "./pages/companyPages/CompanyAddPage";
+// Pages - Project
 import ProjectAddPage from "./pages/projectPages/ProjectAddPage";
+import ProjectViewAllPage from "./pages/projectPages/ProjectViewAllPage";
+// Pages - Category
 import CategoryAddPage from "./pages/categoryPages/CategoryAddPage";
+// Pages - Requirement
 import RequirementAddPage from "./pages/requirementPages/RequirementAddPage";
 
 // App
@@ -20,10 +26,10 @@ const App = () => {
   // Login User
   const loginUser = async ({ email, password }) => {
     // Fetch request to the backend
-    const response = await fetch('http://localhost:3001/api/v1/users/auth', {
-      method: 'POST',
+    const response = await fetch("http://localhost:3001/api/v1/users/auth", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
@@ -34,8 +40,8 @@ const App = () => {
     }
     // If the response is ok, store the token in local storage
     if (response.ok) {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('current_user_id', data._id);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("current_user_id", data._id);
       return data;
     }
   };
@@ -43,13 +49,16 @@ const App = () => {
   // Register User
   const registerUser = async (userData) => {
     // Fetch request to the backend
-    const response = await fetch('http://localhost:3001/api/v1/users/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
+    const response = await fetch(
+      "http://localhost:3001/api/v1/users/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      }
+    );
     const data = await response.json();
     // If the response is not ok, throw an error
     if (!response.ok) {
@@ -62,10 +71,10 @@ const App = () => {
   // Add Company
   const addCompany = async ({ company_name, is_active }) => {
     // Fetch request to the backend
-    const response = await fetch('http://localhost:3001/api/v1/companies', {
-      method: 'POST',
+    const response = await fetch("http://localhost:3001/api/v1/companies", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ company_name, is_active }),
     });
@@ -81,11 +90,11 @@ const App = () => {
   // Add Project
   const addProject = async (projectData) => {
     // Fetch request to the backend
-    const response = await fetch('http://localhost:3001/api/v1/projects', {
-      method: 'POST',
+    const response = await fetch("http://localhost:3001/api/v1/projects", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(projectData),
     });
@@ -99,13 +108,17 @@ const App = () => {
   };
 
   // Add Category
-  const addCategory = async (category_name, category_description, is_active) => {
+  const addCategory = async (
+    category_name,
+    category_description,
+    is_active
+  ) => {
     // Fetch request to the backend
-    const response = await fetch('http://localhost:3001/api/v1/categories', {
-      method: 'POST',
+    const response = await fetch("http://localhost:3001/api/v1/categories", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(category_name, category_description, is_active),
     });
@@ -121,11 +134,11 @@ const App = () => {
   // Add Requirement
   const addRequirement = async (requirementData) => {
     // Fetch request to the backend
-    const response = await fetch('http://localhost:3001/api/v1/requirements', {
-      method: 'POST',
+    const response = await fetch("http://localhost:3001/api/v1/requirements", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(requirementData),
     });
@@ -159,6 +172,7 @@ const App = () => {
           path="/project/add"
           element={<ProjectAddPage projectAddSubmit={addProject} />}
         />
+        <Route path="/projects" element={<ProjectViewAllPage />} />
         <Route
           path="/category/add"
           element={<CategoryAddPage categoryAddSubmit={addCategory} />}
