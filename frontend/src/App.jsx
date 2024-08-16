@@ -9,6 +9,7 @@ import {
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 // App
 const App = () => {
@@ -32,7 +33,26 @@ const App = () => {
       localStorage.setItem('token', data.token);
       return data;
     }
-};
+  };
+
+  // Register User
+  const registerUser = async (userData) => {
+    // Fetch request to the backend
+    const response = await fetch('http://localhost:3001/api/v1/users/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    const data = await response.json();
+    // If the response is not ok, throw an error
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    // If the response is ok, return the data
+    return data;
+  };
 
   // Routes for pages
   const router = createBrowserRouter(
@@ -42,6 +62,10 @@ const App = () => {
         <Route
           path="/login"
           element={<LoginPage userLoginSubmit={loginUser} />}
+        />
+        <Route
+          path="/register"
+          element={<RegisterPage userRegisterSubmit={registerUser} />}
         />
       </Route>
     )
