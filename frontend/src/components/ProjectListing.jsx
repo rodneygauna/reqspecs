@@ -16,7 +16,14 @@ const ProjectListing = ({ project }) => {
     <div className="bg-white rounded-xl shadow-md relative">
       <div className="p-4">
         <div className="mb-6">
-          <h3 className="text-xl font-bold">{project.project_name}</h3>
+          <h3 className="text-xl font-bold">
+            {project.project_name}
+            {project.is_active ? (
+              <span className="text-green-500 text-sm ml-2">Active</span>
+            ) : (
+              <span className="text-red-500 text-sm ml-2">Inactive</span>
+            )}
+          </h3>
         </div>
         <div className="mb-5">{problem_description}</div>
         <button
