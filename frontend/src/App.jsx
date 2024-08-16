@@ -17,6 +17,7 @@ import CompanyAddPage from "./pages/companyPages/CompanyAddPage";
 import ProjectAddPage from "./pages/projectPages/ProjectAddPage";
 import ProjectViewAllPage from "./pages/projectPages/ProjectViewAllPage";
 import ProjectViewSinglePage from "./pages/projectPages/ProjectViewSinglePage";
+import ProjectEditPage from "./pages/projectPages/ProjectEditPage";
 // Pages - Category
 import CategoryAddPage from "./pages/categoryPages/CategoryAddPage";
 // Pages - Requirement
@@ -110,6 +111,28 @@ const App = () => {
     // If the response is ok, return the data
     return data;
   };
+  // Edit Project
+  const editProject = async (projectData) => {
+    // Fetch request to the backend
+    const response = await fetch(
+      `http://localhost:3001/api/v1/projects/${projectData._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(projectData),
+      }
+    );
+    const data = await response.json();
+    // If the response is not ok, throw an error
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    // If the response is ok, return the data
+    return data;
+  };
 
   // Add Category
   const addCategory = async (
@@ -180,6 +203,11 @@ const App = () => {
         <Route
           path="/project/:id"
           element={<ProjectViewSinglePage />}
+          loader={projectLoader}
+        />
+        <Route
+          path="/project/edit/:id"
+          element={<ProjectEditPage projectUpdateSubmit={editProject} />}
           loader={projectLoader}
         />
         <Route
