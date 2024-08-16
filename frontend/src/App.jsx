@@ -16,10 +16,14 @@ import CompanyAddPage from "./pages/companyPages/CompanyAddPage";
 // Pages - Project
 import ProjectAddPage from "./pages/projectPages/ProjectAddPage";
 import ProjectViewAllPage from "./pages/projectPages/ProjectViewAllPage";
+import ProjectViewSinglePage from "./pages/projectPages/ProjectViewSinglePage";
 // Pages - Category
 import CategoryAddPage from "./pages/categoryPages/CategoryAddPage";
 // Pages - Requirement
 import RequirementAddPage from "./pages/requirementPages/RequirementAddPage";
+
+// Loaders
+import { projectLoader } from "./loaders/Loaders";
 
 // App
 const App = () => {
@@ -173,6 +177,11 @@ const App = () => {
           element={<ProjectAddPage projectAddSubmit={addProject} />}
         />
         <Route path="/projects" element={<ProjectViewAllPage />} />
+        <Route
+          path="/project/:id"
+          element={<ProjectViewSinglePage />}
+          loader={projectLoader}
+        />
         <Route
           path="/category/add"
           element={<CategoryAddPage categoryAddSubmit={addCategory} />}
