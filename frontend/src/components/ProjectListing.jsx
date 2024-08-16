@@ -26,6 +26,7 @@ const ProjectListing = ({ project }) => {
           {showFullDescription ? "Less" : "More"}
         </button>
         <div className="mb-5">
+          <span className="font-grey">Epic Link:</span> <br />
           <a
             href={epic_link}
             target="_blank"
