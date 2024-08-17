@@ -13,6 +13,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 // Pages - Company
 import CompanyAddPage from "./pages/companyPages/CompanyAddPage";
+import CompanyEditPage from "./pages/companyPages/CompanyEditPage";
 // Pages - Department
 import DepartmentAddPage from "./pages/departmentPages/DepartmentAddPage";
 // Pages - Project
@@ -26,7 +27,7 @@ import CategoryAddPage from "./pages/categoryPages/CategoryAddPage";
 import RequirementAddPage from "./pages/requirementPages/RequirementAddPage";
 
 // Loaders
-import { projectLoader } from "./loaders/Loaders";
+import { companyLoader, projectLoader } from "./loaders/Loaders";
 
 // App
 const App = () => {
@@ -85,6 +86,27 @@ const App = () => {
       },
       body: JSON.stringify({ company_name, is_active }),
     });
+    const data = await response.json();
+    // If the response is not ok, throw an error
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    // If the response is ok, return the data
+    return data;
+  };
+  // Edit Company
+  const editCompany = async (companyData) => {
+    // Fetch request to the backend
+    const response = await fetch(
+      `http://localhost:3001/api/v1/companies/${companyData._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(companyData),
+      }
+    );
     const data = await response.json();
     // If the response is not ok, throw an error
     if (!response.ok) {
@@ -215,6 +237,11 @@ const App = () => {
         <Route
           path="/company/add"
           element={<CompanyAddPage companyAddSubmit={addCompany} />}
+        />
+        <Route
+          path="/company/edit/:id"
+          element={<CompanyEditPage companyEditSubmit={editCompany} />}
+          loader={companyLoader}
         />
         <Route
           path="/department/add"
