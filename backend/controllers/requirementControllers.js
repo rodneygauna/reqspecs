@@ -70,3 +70,19 @@ export const updateRequirement = asyncHandler(async (req, res) => {
     throw new Error("Requirement not found");
   }
 });
+
+// @desc    Get requirements by project ID
+// @route   GET /api/v1/requirements/project/:id
+// @access  Private
+export const getRequirementsByProjectId = asyncHandler(async (req, res) => {
+  const requirements = await Requirement.find({
+    project: req.params.project_id,
+  });
+
+  if (requirements) {
+    res.status(201).json(requirements);
+  } else {
+    res.status(404);
+    throw new Error("Requirements not found");
+  }
+});
