@@ -18,6 +18,9 @@ import CompanyViewSinglePage from "./pages/companyPages/CompanyViewSinglePage";
 import CompanyEditPage from "./pages/companyPages/CompanyEditPage";
 // Pages - Department
 import DepartmentAddPage from "./pages/departmentPages/DepartmentAddPage";
+import DepartmentViewAllPage from "./pages/departmentPages/DepartmentViewAllPage";
+import DepartmentViewSinglePage from "./pages/departmentPages/DepartmentViewSinglePage";
+import DepartmentEditPage from "./pages/departmentPages/DepartmentEditPage";
 // Pages - Project
 import ProjectAddPage from "./pages/projectPages/ProjectAddPage";
 import ProjectViewAllPage from "./pages/projectPages/ProjectViewAllPage";
@@ -29,7 +32,11 @@ import CategoryAddPage from "./pages/categoryPages/CategoryAddPage";
 import RequirementAddPage from "./pages/requirementPages/RequirementAddPage";
 
 // Loaders
-import { companyLoader, projectLoader } from "./loaders/Loaders";
+import {
+  companyLoader,
+  departmentLoader,
+  projectLoader,
+} from "./loaders/Loaders";
 
 // App
 const App = () => {
@@ -128,6 +135,27 @@ const App = () => {
       },
       body: JSON.stringify(departmentData),
     });
+    const data = await response.json();
+    // If the response is not ok, throw an error
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    // If the response is ok, return the data
+    return data;
+  };
+  // Edit Department
+  const editDepartment = async (departmentData) => {
+    // Fetch request to the backend
+    const response = await fetch(
+      `http://localhost:3001/api/v1/departments/${departmentData._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(departmentData),
+      }
+    );
     const data = await response.json();
     // If the response is not ok, throw an error
     if (!response.ok) {
@@ -254,6 +282,17 @@ const App = () => {
         <Route
           path="/department/add"
           element={<DepartmentAddPage departmentAddSubmit={addDepartment} />}
+        />
+        <Route path="/departments" element={<DepartmentViewAllPage />} />
+        <Route
+          path="/department/:id"
+          element={<DepartmentViewSinglePage />}
+          loader={departmentLoader}
+        />
+        <Route
+          path="/department/edit/:id"
+          element={<DepartmentEditPage departmentEditSubmit={editDepartment} />}
+          loader={departmentLoader}
         />
         <Route
           path="/project/add"
