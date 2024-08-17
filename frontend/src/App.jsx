@@ -13,6 +13,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 // Pages - Company
 import CompanyAddPage from "./pages/companyPages/CompanyAddPage";
+import CompanyViewAllPage from "./pages/companyPages/CompanyViewAllPage";
+import CompanyViewSinglePage from "./pages/companyPages/CompanyViewSinglePage";
 import CompanyEditPage from "./pages/companyPages/CompanyEditPage";
 // Pages - Department
 import DepartmentAddPage from "./pages/departmentPages/DepartmentAddPage";
@@ -237,6 +239,12 @@ const App = () => {
         <Route
           path="/company/add"
           element={<CompanyAddPage companyAddSubmit={addCompany} />}
+        />
+        <Route path="/companies" element={<CompanyViewAllPage />} />
+        <Route
+          path="/company/:id"
+          element={<CompanyViewSinglePage />}
+          loader={companyLoader}
         />
         <Route
           path="/company/edit/:id"
