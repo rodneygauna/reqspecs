@@ -26,7 +26,7 @@ const CompanyEditPage = ({ companyEditSubmit }) => {
 
     companyEditSubmit(companyData)
       .then(() => {
-        navigate("/");
+        navigate("/companies");
         toast.success("Company updated successfully");
       })
       .catch((error) => {
