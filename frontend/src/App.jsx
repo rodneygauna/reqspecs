@@ -30,6 +30,7 @@ import ProjectEditPage from "./pages/projectPages/ProjectEditPage";
 import CategoryAddPage from "./pages/categoryPages/CategoryAddPage";
 // Pages - Requirement
 import RequirementAddPage from "./pages/requirementPages/RequirementAddPage";
+import RequirementViewByProject from "./pages/requirementPages/RequirementViewByProject";
 
 // Loaders
 import {
@@ -316,6 +317,10 @@ const App = () => {
         <Route
           path="/requirement/add"
           element={<RequirementAddPage requirementAddSubmit={addRequirement} />}
+        />
+        <Route
+          path="/requirements/project/:project_id"
+          element={<RequirementViewByProject />}
         />
       </Route>
     )
