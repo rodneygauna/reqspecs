@@ -13,6 +13,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 // Pages - Company
 import CompanyAddPage from "./pages/companyPages/CompanyAddPage";
+// Pages - Department
+import DepartmentAddPage from "./pages/departmentPages/DepartmentAddPage";
 // Pages - Project
 import ProjectAddPage from "./pages/projectPages/ProjectAddPage";
 import ProjectViewAllPage from "./pages/projectPages/ProjectViewAllPage";
@@ -82,6 +84,25 @@ const App = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ company_name, is_active }),
+    });
+    const data = await response.json();
+    // If the response is not ok, throw an error
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    // If the response is ok, return the data
+    return data;
+  };
+
+  // Add Department
+  const addDepartment = async (departmentData) => {
+    // Fetch request to the backend
+    const response = await fetch("http://localhost:3001/api/v1/departments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(departmentData),
     });
     const data = await response.json();
     // If the response is not ok, throw an error
@@ -194,6 +215,10 @@ const App = () => {
         <Route
           path="/company/add"
           element={<CompanyAddPage companyAddSubmit={addCompany} />}
+        />
+        <Route
+          path="/department/add"
+          element={<DepartmentAddPage departmentAddSubmit={addDepartment} />}
         />
         <Route
           path="/project/add"
