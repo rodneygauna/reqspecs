@@ -32,6 +32,12 @@ const Navbar = () => {
                 </NavLink>
                 {isAuthenticated && (
                   <>
+                    <NavLink to="/companies" className={linkClass}>
+                      Companies
+                    </NavLink>
+                    <NavLink to="/departments" className={linkClass}>
+                      Departments
+                    </NavLink>
                     <NavLink to="/projects" className={linkClass}>
                       Projects
                     </NavLink>
