@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import Spinner from "../components/Spinner";
 
 import ProjectListing from "../components/ProjectListing";
-import Spinner from "../components/Spinner";
 
 const ProjectListings = () => {
   const [projects, setProjects] = useState([]);
