@@ -63,14 +63,13 @@ const App = () => {
     if (!response.ok) {
       throw new Error(data.message);
     }
-    // If the response is ok, store the token in local storage
+    // If the response is ok, store the token in session storage
     if (response.ok) {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("current_user_id", data._id);
+      sessionStorage.setItem("token", data.token);
+      sessionStorage.setItem("current_user_id", data._id);
       return data;
     }
   };
-
   // Register User
   const registerUser = async (userData) => {
     // Fetch request to the backend
@@ -91,6 +90,12 @@ const App = () => {
     }
     // If the response is ok, return the data
     return data;
+  };
+  // Logout User
+  const logoutUser = () => {
+    // Remove the token from session storage
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("current_user_id");
   };
 
   // Add Company
@@ -180,7 +185,7 @@ const App = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
       body: JSON.stringify(projectData),
     });
@@ -201,7 +206,7 @@ const App = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
         body: JSON.stringify(projectData),
       }
@@ -226,7 +231,7 @@ const App = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
       body: JSON.stringify(category_name, category_description, is_active),
     });
@@ -247,7 +252,7 @@ const App = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
         body: JSON.stringify(categoryData),
       }
@@ -268,7 +273,7 @@ const App = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
       body: JSON.stringify(requirementData),
     });
@@ -289,7 +294,7 @@ const App = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
         body: JSON.stringify(requirementData),
       }
@@ -316,6 +321,7 @@ const App = () => {
           path="/register"
           element={<RegisterPage userRegisterSubmit={registerUser} />}
         />
+        <Route path="/logout" element={<HomePage logoutUser={logoutUser} />} />
         <Route
           path="/company/add"
           element={<CompanyAddPage companyAddSubmit={addCompany} />}
