@@ -33,6 +33,7 @@ import CategoryViewSinglePage from "./pages/categoryPages/CategoryViewSinglePage
 // Pages - Requirement
 import RequirementAddPage from "./pages/requirementPages/RequirementAddPage";
 import RequirementViewByProject from "./pages/requirementPages/RequirementViewByProject";
+import RequirementEditPage from "./pages/requirementPages/RequirementEditPage";
 
 // Loaders
 import {
@@ -40,6 +41,7 @@ import {
   departmentLoader,
   projectLoader,
   categoryLoader,
+  requirementLoader,
   requirementsByProjectLoader,
 } from "./loaders/Loaders";
 
@@ -255,6 +257,28 @@ const App = () => {
     // If the response is ok, return the data
     return data;
   };
+  // Edit Requirement
+  const editRequirement = async (requirementData) => {
+    // Fetch request to the backend
+    const response = await fetch(
+      `http://localhost:3001/api/v1/requirements/${requirementData._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(requirementData),
+      }
+    );
+    const data = await response.json();
+    // If the response is not ok, throw an error
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    // If the response is ok, return the data
+    return data;
+  };
 
   // Routes for pages
   const router = createBrowserRouter(
@@ -332,6 +356,13 @@ const App = () => {
           path="/requirements/project/:id"
           element={<RequirementViewByProject />}
           loader={requirementsByProjectLoader}
+        />
+        <Route
+          path="/requirement/edit/:id"
+          element={
+            <RequirementEditPage requirementEditSubmit={editRequirement} />
+          }
+          loader={requirementLoader}
         />
       </Route>
     )
