@@ -28,7 +28,7 @@ const RequirementAddPage = ({ requirementAddSubmit }) => {
       is_active: true,
       category,
       project,
-      created_by: localStorage.getItem("current_user_id"),
+      created_by: sessionStorage.getItem("current_user_id"),
     };
 
     requirementAddSubmit(requirementData)
