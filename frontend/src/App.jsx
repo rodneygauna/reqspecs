@@ -102,7 +102,7 @@ const App = () => {
   // Add Company
   const addCompany = async ({ company_name, is_active }) => {
     // Fetch request to the backend
-    const response = await fetch("http://backend:3001/api/v1/companies", {
+    const response = await fetch("http://localhost:3001/api/v1/companies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
