@@ -1,13 +1,30 @@
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import logo from "/logo-423x528.png";
 
 const Navbar = () => {
-  // Check if user is authenticated
-  let isAuthenticated = false;
-  if (localStorage.getItem("token")) {
-    isAuthenticated = true;
-  }
+  // Authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check if user is authenticated on page load
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+
+    // Listen for storage events
+    const handleStorageChange = () => {
+      const token = sessionStorage.getItem("token");
+      setIsAuthenticated(!!token);
+    };
+    window.addEventListener("storage", handleStorageChange);
+    // Cleanup
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const linkClass = ({ isActive }) =>
     isActive
@@ -37,6 +54,9 @@ const Navbar = () => {
                     </NavLink>
                     <NavLink to="/departments" className={linkClass}>
                       Departments
+                    </NavLink>
+                    <NavLink to="/categories" className={linkClass}>
+                      Categories
                     </NavLink>
                     <NavLink to="/projects" className={linkClass}>
                       Projects
