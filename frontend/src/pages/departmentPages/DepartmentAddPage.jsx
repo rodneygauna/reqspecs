@@ -16,7 +16,7 @@ const DepartmentAddPage = ({ departmentAddSubmit }) => {
 
     departmentAddSubmit({ department_name, is_active: true })
       .then(() => {
-        navigate("/");
+        navigate("/departments");
         toast.success("Department created successfully");
       })
       .catch((error) => {
