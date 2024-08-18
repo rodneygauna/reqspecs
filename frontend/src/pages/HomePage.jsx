@@ -1,9 +1,12 @@
-import Hero from '../components/Hero';
+import Hero from "../components/Hero";
 
 const HomePage = () => {
   return (
     <>
-      <Hero />
+      <Hero
+        title="ReqSpecs"
+        subtitle="Create, update, and manage your requirements specifications with ease."
+      />
     </>
   );
 };
