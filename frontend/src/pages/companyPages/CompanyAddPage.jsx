@@ -16,7 +16,7 @@ const CompanyAddPage = ({ companyAddSubmit }) => {
 
     companyAddSubmit({ company_name, is_active: true })
       .then(() => {
-        navigate("/");
+        navigate("/companies");
         toast.success("Company created successfully");
       })
       .catch((error) => {
