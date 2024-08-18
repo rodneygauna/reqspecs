@@ -29,3 +29,11 @@ export const categoryLoader = async ({ params }) => {
   const data = await response.json();
   return data;
 };
+
+export const requirementsByProjectLoader = async ({ params }) => {
+  const response = await fetch(
+    `http://localhost:3001/api/v1/requirements/project/${params.id}`
+  );
+  const data = await response.json();
+  return data;
+};
