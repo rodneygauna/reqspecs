@@ -6,10 +6,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 const app = express();
 
 // Middleware
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://dev.rodney.codes:3000",
-];
+const allowedOrigins = ["http://localhost:3000", "http://rodney.codes:3000"];
 app.use(
   cors({
     origin: (origin, callback) => {
