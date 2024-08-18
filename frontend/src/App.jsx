@@ -40,6 +40,7 @@ import {
   departmentLoader,
   projectLoader,
   categoryLoader,
+  requirementsByProjectLoader,
 } from "./loaders/Loaders";
 
 // App
@@ -328,8 +329,9 @@ const App = () => {
           element={<RequirementAddPage requirementAddSubmit={addRequirement} />}
         />
         <Route
-          path="/requirements/project/:project_id"
+          path="/requirements/project/:id"
           element={<RequirementViewByProject />}
+          loader={requirementsByProjectLoader}
         />
       </Route>
     )
