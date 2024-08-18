@@ -1,24 +1,40 @@
+import { useLoaderData } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-import RequirementListings from "../../components/RequirementListings";
+import RequirementListing from "../../components/RequirementListing";
 
 const RequirementViewByProject = () => {
+  const project = useLoaderData();
+
   return (
-    <section className="bg-gray-50">
-      <div className="container mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mt-3 mb-3">
-          Requirements
-        </h1>
-        <Link
-          to="/requirement/add"
-          className="w-full text-white bg-indigo-700 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-5 text-center"
-        >
-          Add Requirement
-        </Link>
-        <hr className="my-5" />
-        <RequirementListings />
-      </div>
-    </section>
+    <>
+      {/* Breadcrumb */}
+      <section>
+        <div className="container m-auto py-6 px-6">
+          <Link
+            to="/projects"
+            className="text-indigo-500 hover:text-indigo-600 flex items-center"
+          >
+            <FaArrowLeft className="mr-2" /> Back to projects
+          </Link>
+        </div>
+      </section>
+
+      {/* List of requirements */}
+      <section className="bg-gray-50">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-1">
+            {project.map((requirement) => (
+              <RequirementListing
+                key={requirement._id}
+                requirement={requirement}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 
