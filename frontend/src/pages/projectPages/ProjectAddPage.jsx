@@ -41,7 +41,7 @@ const ProjectAddPage = ({ projectAddSubmit }) => {
       returns_description,
       epic_link,
       is_active: true,
-      users: localStorage.getItem("current_user_id"),
+      users: sessionStorage.getItem("current_user_id"),
     };
 
     projectAddSubmit(projectData)
