@@ -33,6 +33,12 @@ const ProjectViewSinglePage = () => {
               >
                 Edit project
               </Link>
+              <Link
+                to={`/requirements/project/${project._id}`}
+                className="w-full text-white bg-indigo-700 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-2"
+              >
+                View requirements
+              </Link>
             </div>
             <div className="mb-6">
               <h3 className="text-xl font-bold">Project Details</h3>
