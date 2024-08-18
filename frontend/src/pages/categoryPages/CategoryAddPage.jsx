@@ -17,7 +17,7 @@ const CategoryAddPage = ({ categoryAddSubmit }) => {
 
     categoryAddSubmit({ category_name, category_description, is_active: true })
       .then(() => {
-        navigate("/");
+        navigate("/categories");
         toast.success("Category created successfully");
       })
       .catch((error) => {
