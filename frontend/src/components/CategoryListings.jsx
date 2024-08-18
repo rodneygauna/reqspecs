@@ -9,7 +9,7 @@ const CategoryListings = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const apiUrl = "http://localhost:3001/api/v1/categories";
+      const apiUrl = "http://backend:3001/api/v1/categories";
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();

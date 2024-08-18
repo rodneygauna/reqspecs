@@ -5,7 +5,7 @@ const DepartmentDropdown = ({ departmentID, setDepartmentID }) => {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/departments")
+    fetch("http://backend:3001/api/v1/departments")
       .then((response) => response.json())
       .then((data) => setDepartments(data));
   }, []);

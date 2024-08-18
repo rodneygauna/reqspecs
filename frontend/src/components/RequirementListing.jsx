@@ -9,7 +9,7 @@ const RequirementListing = ({ requirement }) => {
     const fetchCategory = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/api/v1/categories/${requirement.category}`
+          `http://backend:3001/api/v1/categories/${requirement.category}`
         );
         const categoryData = await response.json();
         setCategory(categoryData);

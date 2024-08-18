@@ -1,6 +1,6 @@
 export const projectLoader = async ({ params }) => {
   const response = await fetch(
-    `http://localhost:3001/api/v1/projects/${params.id}`
+    `http://backend:3001/api/v1/projects/${params.id}`
   );
   const data = await response.json();
   return data;
@@ -8,7 +8,7 @@ export const projectLoader = async ({ params }) => {
 
 export const companyLoader = async ({ params }) => {
   const response = await fetch(
-    `http://localhost:3001/api/v1/companies/${params.id}`
+    `http://backend:3001/api/v1/companies/${params.id}`
   );
   const data = await response.json();
   return data;
@@ -16,7 +16,7 @@ export const companyLoader = async ({ params }) => {
 
 export const departmentLoader = async ({ params }) => {
   const response = await fetch(
-    `http://localhost:3001/api/v1/departments/${params.id}`
+    `http://backend:3001/api/v1/departments/${params.id}`
   );
   const data = await response.json();
   return data;
@@ -24,7 +24,7 @@ export const departmentLoader = async ({ params }) => {
 
 export const categoryLoader = async ({ params }) => {
   const response = await fetch(
-    `http://localhost:3001/api/v1/categories/${params.id}`
+    `http://backend:3001/api/v1/categories/${params.id}`
   );
   const data = await response.json();
   return data;
@@ -32,7 +32,7 @@ export const categoryLoader = async ({ params }) => {
 
 export const requirementLoader = async ({ params }) => {
   const response = await fetch(
-    `http://localhost:3001/api/v1/requirements/${params.id}`
+    `http://backend:3001/api/v1/requirements/${params.id}`
   );
   const data = await response.json();
   return data;
@@ -40,7 +40,7 @@ export const requirementLoader = async ({ params }) => {
 
 export const requirementsByProjectLoader = async ({ params }) => {
   const response = await fetch(
-    `http://localhost:3001/api/v1/requirements/project/${params.id}`
+    `http://backend:3001/api/v1/requirements/project/${params.id}`
   );
   const data = await response.json();
   return data;

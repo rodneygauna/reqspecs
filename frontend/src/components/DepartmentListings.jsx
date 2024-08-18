@@ -9,7 +9,7 @@ const DepartmentListings = () => {
 
   useEffect(() => {
     const fetchDepartments = async () => {
-      const apiUrl = "http://localhost:3001/api/v1/departments";
+      const apiUrl = "http://backend:3001/api/v1/departments";
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();

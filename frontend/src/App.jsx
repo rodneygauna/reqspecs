@@ -51,7 +51,7 @@ const App = () => {
   // Login User
   const loginUser = async ({ email, password }) => {
     // Fetch request to the backend
-    const response = await fetch("http://localhost:3001/api/v1/users/auth", {
+    const response = await fetch("http://backend:3001/api/v1/users/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,16 +73,13 @@ const App = () => {
   // Register User
   const registerUser = async (userData) => {
     // Fetch request to the backend
-    const response = await fetch(
-      "http://localhost:3001/api/v1/users/register",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      }
-    );
+    const response = await fetch("http://backend:3001/api/v1/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
     const data = await response.json();
     // If the response is not ok, throw an error
     if (!response.ok) {
@@ -121,7 +118,7 @@ const App = () => {
   const editCompany = async (companyData) => {
     // Fetch request to the backend
     const response = await fetch(
-      `http://localhost:3001/api/v1/companies/${companyData._id}`,
+      `http://backend:3001/api/v1/companies/${companyData._id}`,
       {
         method: "PUT",
         headers: {
@@ -142,7 +139,7 @@ const App = () => {
   // Add Department
   const addDepartment = async (departmentData) => {
     // Fetch request to the backend
-    const response = await fetch("http://localhost:3001/api/v1/departments", {
+    const response = await fetch("http://backend:3001/api/v1/departments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -161,7 +158,7 @@ const App = () => {
   const editDepartment = async (departmentData) => {
     // Fetch request to the backend
     const response = await fetch(
-      `http://localhost:3001/api/v1/departments/${departmentData._id}`,
+      `http://backend:3001/api/v1/departments/${departmentData._id}`,
       {
         method: "PUT",
         headers: {
@@ -182,7 +179,7 @@ const App = () => {
   // Add Project
   const addProject = async (projectData) => {
     // Fetch request to the backend
-    const response = await fetch("http://localhost:3001/api/v1/projects", {
+    const response = await fetch("http://backend:3001/api/v1/projects", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -202,7 +199,7 @@ const App = () => {
   const editProject = async (projectData) => {
     // Fetch request to the backend
     const response = await fetch(
-      `http://localhost:3001/api/v1/projects/${projectData._id}`,
+      `http://backend:3001/api/v1/projects/${projectData._id}`,
       {
         method: "PUT",
         headers: {
@@ -228,7 +225,7 @@ const App = () => {
     is_active
   ) => {
     // Fetch request to the backend
-    const response = await fetch("http://localhost:3001/api/v1/categories", {
+    const response = await fetch("http://backend:3001/api/v1/categories", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -248,7 +245,7 @@ const App = () => {
   const editCategory = async (categoryData) => {
     // Fetch request to the backend
     const response = await fetch(
-      `http://localhost:3001/api/v1/categories/${categoryData._id}`,
+      `http://backend:3001/api/v1/categories/${categoryData._id}`,
       {
         method: "PUT",
         headers: {
@@ -270,7 +267,7 @@ const App = () => {
   // Add Requirement
   const addRequirement = async (requirementData) => {
     // Fetch request to the backend
-    const response = await fetch("http://localhost:3001/api/v1/requirements", {
+    const response = await fetch("http://backend:3001/api/v1/requirements", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -290,7 +287,7 @@ const App = () => {
   const editRequirement = async (requirementData) => {
     // Fetch request to the backend
     const response = await fetch(
-      `http://localhost:3001/api/v1/requirements/${requirementData._id}`,
+      `http://backend:3001/api/v1/requirements/${requirementData._id}`,
       {
         method: "PUT",
         headers: {
