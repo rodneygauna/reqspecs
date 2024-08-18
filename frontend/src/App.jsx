@@ -96,6 +96,7 @@ const App = () => {
     // Remove the token from session storage
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("current_user_id");
+    window.dispatchEvent(new Event("storage"));
   };
 
   // Add Company
