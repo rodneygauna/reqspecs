@@ -28,6 +28,8 @@ import ProjectViewSinglePage from "./pages/projectPages/ProjectViewSinglePage";
 import ProjectEditPage from "./pages/projectPages/ProjectEditPage";
 // Pages - Category
 import CategoryAddPage from "./pages/categoryPages/CategoryAddPage";
+import CategoryViewAllPage from "./pages/categoryPages/CategoryViewAllPage";
+import CategoryViewSinglePage from "./pages/categoryPages/CategoryViewSinglePage";
 // Pages - Requirement
 import RequirementAddPage from "./pages/requirementPages/RequirementAddPage";
 import RequirementViewByProject from "./pages/requirementPages/RequirementViewByProject";
@@ -37,6 +39,7 @@ import {
   companyLoader,
   departmentLoader,
   projectLoader,
+  categoryLoader,
 } from "./loaders/Loaders";
 
 // App
@@ -313,6 +316,12 @@ const App = () => {
         <Route
           path="/category/add"
           element={<CategoryAddPage categoryAddSubmit={addCategory} />}
+        />
+        <Route path="/categories" element={<CategoryViewAllPage />} />
+        <Route
+          path="/category/:id"
+          element={<CategoryViewSinglePage />}
+          loader={categoryLoader}
         />
         <Route
           path="/requirement/add"
