@@ -30,6 +30,7 @@ import ProjectEditPage from "./pages/projectPages/ProjectEditPage";
 import CategoryAddPage from "./pages/categoryPages/CategoryAddPage";
 import CategoryViewAllPage from "./pages/categoryPages/CategoryViewAllPage";
 import CategoryViewSinglePage from "./pages/categoryPages/CategoryViewSinglePage";
+import CategoryEditPage from "./pages/categoryPages/CategoryEditPage";
 // Pages - Requirement
 import RequirementAddPage from "./pages/requirementPages/RequirementAddPage";
 import RequirementViewByProject from "./pages/requirementPages/RequirementViewByProject";
@@ -237,6 +238,28 @@ const App = () => {
     // If the response is ok, return the data
     return data;
   };
+  // Edit Category
+  const editCategory = async (categoryData) => {
+    // Fetch request to the backend
+    const response = await fetch(
+      `http://localhost:3001/api/v1/categories/${categoryData._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(categoryData),
+      }
+    );
+    const data = await response.json();
+    // If the response is not ok, throw an error
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    // If the response is ok, return the data
+    return data;
+  };
 
   // Add Requirement
   const addRequirement = async (requirementData) => {
@@ -346,6 +369,11 @@ const App = () => {
         <Route
           path="/category/:id"
           element={<CategoryViewSinglePage />}
+          loader={categoryLoader}
+        />
+        <Route
+          path="/category/edit/:id"
+          element={<CategoryEditPage categoryEditSubmit={editCategory} />}
           loader={categoryLoader}
         />
         <Route
