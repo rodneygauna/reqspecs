@@ -28,7 +28,7 @@ const DepartmentEditPage = ({ departmentEditSubmit }) => {
 
     departmentEditSubmit(departmentData)
       .then(() => {
-        navigate("/departments");
+        navigate(`/department/${department._id}`);
         toast.success("Department updated successfully");
       })
       .catch((error) => {
