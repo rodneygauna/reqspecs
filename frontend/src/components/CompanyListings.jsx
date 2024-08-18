@@ -9,7 +9,7 @@ const CompanyListings = () => {
 
   useEffect(() => {
     const fetchCompanies = async () => {
-      const apiUrl = "http://backend:3001/api/v1/companies";
+      const apiUrl = "http://localhost:3001/api/v1/companies";
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
