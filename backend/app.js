@@ -5,16 +5,8 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 const app = express();
 
-// CORS List
-const whitelist = {
-  origin: [
-    "http://localhost:3000",
-    "http://dev.rodney.codes",
-    "http://backend:3000",
-  ],
-};
 // Middleware
-app.use(cors(whitelist));
+app.use(cors);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
