@@ -40,7 +40,7 @@ const RequirementEditPage = ({ requirementEditSubmit }) => {
       updated_by: [
         ...requirement.updated_by,
         {
-          user_id: localStorage.getItem("current_user_id"),
+          user_id: sessionStorage.getItem("current_user_id"),
           updated_at: new Date(),
         },
       ],
