@@ -9,7 +9,7 @@ const app = express();
 const whitelist = {
   origin: [
     "http://localhost:3000",
-    "http://dev.rodney.codes:3000",
+    "http://dev.rodney.codes",
     "http://backend:3000",
   ],
 };
