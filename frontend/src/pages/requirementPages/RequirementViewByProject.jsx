@@ -24,6 +24,14 @@ const RequirementViewByProject = () => {
       {/* List of requirements */}
       <section className="bg-gray-50">
         <div className="container mx-auto">
+          <div className="mb-6">
+            <Link
+              to={"/requirement/add/"}
+              className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
+            >
+              Add Requirement
+            </Link>
+          </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-1">
             {project.map((requirement) => (
               <RequirementListing
