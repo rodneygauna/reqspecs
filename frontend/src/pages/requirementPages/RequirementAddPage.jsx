@@ -33,7 +33,7 @@ const RequirementAddPage = ({ requirementAddSubmit }) => {
 
     requirementAddSubmit(requirementData)
       .then(() => {
-        navigate("/");
+        navigate(`requirements/project/${project}`);
         toast.success("Requirement created successfully");
       })
       .catch((error) => {
