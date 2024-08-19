@@ -5,7 +5,7 @@ const CategoryDropdown = ({ category, setCategoryID }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://backend:3001/api/v1/categories")
+    fetch("/api/v1/categories")
       .then((response) => response.json())
       .then((data) => setCategories(data));
   }, []);

@@ -51,7 +51,7 @@ const App = () => {
   // Login User
   const loginUser = async ({ email, password }) => {
     // Fetch request to the backend
-    const response = await fetch("http://backend:3001/api/v1/users/auth", {
+    const response = await fetch("/api/v1/users/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const App = () => {
   // Register User
   const registerUser = async (userData) => {
     // Fetch request to the backend
-    const response = await fetch("http://backend:3001/api/v1/users/register", {
+    const response = await fetch("/api/v1/users/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -117,16 +117,13 @@ const App = () => {
   // Edit Company
   const editCompany = async (companyData) => {
     // Fetch request to the backend
-    const response = await fetch(
-      `http://backend:3001/api/v1/companies/${companyData._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(companyData),
-      }
-    );
+    const response = await fetch(`/api/v1/companies/${companyData._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(companyData),
+    });
     const data = await response.json();
     // If the response is not ok, throw an error
     if (!response.ok) {
@@ -139,7 +136,7 @@ const App = () => {
   // Add Department
   const addDepartment = async (departmentData) => {
     // Fetch request to the backend
-    const response = await fetch("http://backend:3001/api/v1/departments", {
+    const response = await fetch("/api/v1/departments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -157,16 +154,13 @@ const App = () => {
   // Edit Department
   const editDepartment = async (departmentData) => {
     // Fetch request to the backend
-    const response = await fetch(
-      `http://backend:3001/api/v1/departments/${departmentData._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(departmentData),
-      }
-    );
+    const response = await fetch(`/api/v1/departments/${departmentData._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(departmentData),
+    });
     const data = await response.json();
     // If the response is not ok, throw an error
     if (!response.ok) {
@@ -179,7 +173,7 @@ const App = () => {
   // Add Project
   const addProject = async (projectData) => {
     // Fetch request to the backend
-    const response = await fetch("http://backend:3001/api/v1/projects", {
+    const response = await fetch("/api/v1/projects", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -198,17 +192,14 @@ const App = () => {
   // Edit Project
   const editProject = async (projectData) => {
     // Fetch request to the backend
-    const response = await fetch(
-      `http://backend:3001/api/v1/projects/${projectData._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(projectData),
-      }
-    );
+    const response = await fetch(`/api/v1/projects/${projectData._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(projectData),
+    });
     const data = await response.json();
     // If the response is not ok, throw an error
     if (!response.ok) {
@@ -225,7 +216,7 @@ const App = () => {
     is_active
   ) => {
     // Fetch request to the backend
-    const response = await fetch("http://backend:3001/api/v1/categories", {
+    const response = await fetch("/api/v1/categories", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -244,17 +235,14 @@ const App = () => {
   // Edit Category
   const editCategory = async (categoryData) => {
     // Fetch request to the backend
-    const response = await fetch(
-      `http://backend:3001/api/v1/categories/${categoryData._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(categoryData),
-      }
-    );
+    const response = await fetch(`/api/v1/categories/${categoryData._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(categoryData),
+    });
     const data = await response.json();
     // If the response is not ok, throw an error
     if (!response.ok) {
@@ -267,7 +255,7 @@ const App = () => {
   // Add Requirement
   const addRequirement = async (requirementData) => {
     // Fetch request to the backend
-    const response = await fetch("http://backend:3001/api/v1/requirements", {
+    const response = await fetch("/api/v1/requirements", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -287,7 +275,7 @@ const App = () => {
   const editRequirement = async (requirementData) => {
     // Fetch request to the backend
     const response = await fetch(
-      `http://backend:3001/api/v1/requirements/${requirementData._id}`,
+      `/api/v1/requirements/${requirementData._id}`,
       {
         method: "PUT",
         headers: {

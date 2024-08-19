@@ -9,7 +9,7 @@ const ProjectListings = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const apiUrl = "http://backend:3001/api/v1/projects";
+      const apiUrl = "/api/v1/projects";
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();

@@ -5,7 +5,7 @@ const ProjectDropdown = ({ project, setProjectID }) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch("http://backend:3001/api/v1/projects")
+    fetch("/api/v1/projects")
       .then((response) => response.json())
       .then((data) => setProjects(data));
   }, []);
