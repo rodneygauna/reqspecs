@@ -190,3 +190,17 @@ export const updateUser = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
+
+// @desc    Get user by ID
+// @route   GET /api/v1/users/:id
+// @access  Private
+export const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password_hash");
+
+  if (user) {
+    res.status(201).json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
