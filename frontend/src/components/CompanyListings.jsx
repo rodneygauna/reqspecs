@@ -14,7 +14,10 @@ const CompanyListings = () => {
         const response = await fetch(apiUrl);
         const data = await response.json();
         if (response.ok) {
-          setCompanies(data);
+          const sortedData = data.sort((a, b) =>
+            a.company_name.localeCompare(b.company_name)
+          );
+          setCompanies(sortedData);
           setLoading(false);
         } else {
           throw new Error(data.message);

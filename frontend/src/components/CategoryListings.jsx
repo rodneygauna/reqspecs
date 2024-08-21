@@ -14,7 +14,10 @@ const CategoryListings = () => {
         const response = await fetch(apiUrl);
         const data = await response.json();
         if (response.ok) {
-          setCategories(data);
+          const sortedData = data.sort((a, b) =>
+            a.category_name.localeCompare(b.category_name)
+          );
+          setCategories(sortedData);
           setLoading(false);
         } else {
           throw new Error(data.message);

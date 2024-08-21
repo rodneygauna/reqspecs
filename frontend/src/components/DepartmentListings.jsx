@@ -14,7 +14,10 @@ const DepartmentListings = () => {
         const response = await fetch(apiUrl);
         const data = await response.json();
         if (response.ok) {
-          setDepartments(data);
+          const sortedData = data.sort((a, b) =>
+            a.department_name.localeCompare(b.department_name)
+          );
+          setDepartments(sortedData);
           setLoading(false);
         } else {
           throw new Error(data.message);

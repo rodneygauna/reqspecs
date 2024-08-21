@@ -14,7 +14,10 @@ const ProjectListings = () => {
         const response = await fetch(apiUrl);
         const data = await response.json();
         if (response.ok) {
-          setProjects(data);
+          const sortedData = data.sort((a, b) =>
+            a.project_name.localeCompare(b.project_name)
+          );
+          setProjects(sortedData);
           setLoading(false);
         } else {
           throw new Error(data.message);
