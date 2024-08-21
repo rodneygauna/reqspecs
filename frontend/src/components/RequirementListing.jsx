@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import UpdateLogModal from "./RequirementHistoryLog";
+
 const RequirementListing = ({ requirement }) => {
   const [category, setCategory] = useState("");
   const [createdUser, setCreatedUser] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -40,6 +43,9 @@ const RequirementListing = ({ requirement }) => {
     fetchCategory();
     fetchUser();
   }, [requirement.category, requirement.created_by]);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div className="bg-white rounded-xl shadow-md relative">
@@ -91,6 +97,15 @@ const RequirementListing = ({ requirement }) => {
         </div>
         <div className="mb-5">
           <Link
+            to="#"
+            onClick={openModal}
+            className="text-indigo-500 hover:text-indigo-600"
+          >
+            View Update Log
+          </Link>
+        </div>
+        <div className="mb-5">
+          <Link
             to={`/requirement/edit/${requirement._id}`}
             className="w-full text-white bg-indigo-700 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
@@ -98,12 +113,33 @@ const RequirementListing = ({ requirement }) => {
           </Link>
         </div>
       </div>
+      <UpdateLogModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        updates={requirement.updated_by}
+      />
     </div>
   );
 };
 
 RequirementListing.propTypes = {
-  requirement: PropTypes.object.isRequired,
+  requirement: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    short_description: PropTypes.string.isRequired,
+    detailed_description: PropTypes.string.isRequired,
+    is_active: PropTypes.bool.isRequired,
+    category: PropTypes.string.isRequired,
+    created_by: PropTypes.string.isRequired,
+    updated_by: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        user_id: PropTypes.string.isRequired,
+        updated_at: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    story_link: PropTypes.string,
+    createdAt: PropTypes.string.isRequired, // Add this line
+  }).isRequired,
 };
 
 export default RequirementListing;
