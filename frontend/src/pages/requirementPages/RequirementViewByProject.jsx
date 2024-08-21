@@ -7,6 +7,15 @@ import RequirementListing from "../../components/RequirementListing";
 const RequirementViewByProject = () => {
   const project = useLoaderData();
 
+  // Extract and sort the requirements
+  const sortedRequirements = project.sort((a, b) => {
+    if (a.category < b.category) return -1;
+    if (a.category > b.category) return 1;
+    if (new Date(a.createdAt) < new Date(b.createdAt)) return -1;
+    if (new Date(a.createdAt) > new Date(b.createdAt)) return 1;
+    return 0;
+  });
+
   return (
     <>
       {/* Breadcrumb */}
@@ -33,7 +42,7 @@ const RequirementViewByProject = () => {
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-1">
-            {project.map((requirement) => (
+            {sortedRequirements.map((requirement) => (
               <RequirementListing
                 key={requirement._id}
                 requirement={requirement}
