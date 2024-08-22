@@ -16,7 +16,7 @@ const LoginPage = ({ userLoginSubmit }) => {
     e.preventDefault();
     userLoginSubmit({ email, password })
       .then(() => {
-        navigate("/");
+        navigate("/projects");
         toast.success("Logged in successfully");
         window.dispatchEvent(new Event("storage"));
       })
@@ -95,7 +95,7 @@ const LoginPage = ({ userLoginSubmit }) => {
               <p className="text-sm font-light text-gray-500">
                 Don’t have an account yet?{" "}
                 <a
-                  href="#"
+                  href="/register"
                   className="font-medium text-indigo-600 hover:underline"
                 >
                   Sign up
