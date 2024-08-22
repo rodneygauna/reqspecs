@@ -64,7 +64,7 @@ const ProjectEditPage = ({ projectUpdateSubmit }) => {
       returns_description,
       epic_link,
       is_active,
-      users: sessionStorage.getItem("current_user_id"),
+      users: localStorage.getItem("current_user_id"),
     };
 
     projectUpdateSubmit(projectData)

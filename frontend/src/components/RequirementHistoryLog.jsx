@@ -29,7 +29,7 @@ const UpdateLogModal = ({ isOpen, onClose, updates }) => {
         try {
           const response = await fetch(`/api/v1/users/${userId}`, {
             headers: {
-              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           });
           return await response.json();

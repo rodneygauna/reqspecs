@@ -7,16 +7,22 @@ const Navbar = () => {
   // Authentication state
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Check if user is authenticated on page load
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
+  // On page load, check if user is authenticated
+  const checkAuth = () => {
+    const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
     }
+  };
+
+  useEffect(() => {
+    checkAuth();
 
     // Listen for storage events
     const handleStorageChange = () => {
-      const token = sessionStorage.getItem("token");
+      const token = localStorage.getItem("token");
       setIsAuthenticated(!!token);
     };
     window.addEventListener("storage", handleStorageChange);

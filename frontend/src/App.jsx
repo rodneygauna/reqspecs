@@ -65,8 +65,8 @@ const App = () => {
     }
     // If the response is ok, store the token in session storage
     if (response.ok) {
-      sessionStorage.setItem("token", data.token);
-      sessionStorage.setItem("current_user_id", data._id);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("current_user_id", data._id);
       return data;
     }
   };
@@ -91,8 +91,8 @@ const App = () => {
   // Logout User
   const logoutUser = () => {
     // Remove the token from session storage
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("current_user_id");
+    localStorage.removeItem("token");
+    localStorage.removeItem("current_user_id");
     window.dispatchEvent(new Event("storage"));
   };
 
@@ -177,7 +177,7 @@ const App = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(projectData),
     });
@@ -196,7 +196,7 @@ const App = () => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(projectData),
     });
@@ -220,7 +220,7 @@ const App = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(category_name, category_description, is_active),
     });
@@ -239,7 +239,7 @@ const App = () => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(categoryData),
     });
@@ -259,7 +259,7 @@ const App = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(requirementData),
     });
@@ -280,7 +280,7 @@ const App = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(requirementData),
       }

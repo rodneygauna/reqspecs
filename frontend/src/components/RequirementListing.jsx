@@ -26,12 +26,12 @@ const RequirementListing = ({ requirement }) => {
     const fetchUser = async () => {
       try {
         // Fetch the user who created the requirement at /api/v1/users/${requirement.created_by}
-        // and the Bear token from sessionStorage
+        // and the Bear token from localStorage
         const response = await fetch(
           `/api/v1/users/${requirement.created_by}`,
           {
             headers: {
-              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );
