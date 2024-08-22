@@ -10,6 +10,7 @@ const RequirementListing = ({ requirement }) => {
   const [category, setCategory] = useState("");
   const [createdUser, setCreatedUser] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [areDetailsOpen, setAreDetailsOpen] = useState(false);
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -52,67 +53,82 @@ const RequirementListing = ({ requirement }) => {
   return (
     <div className="bg-white rounded-xl shadow-md relative">
       <div className="p-4">
-        <div className="mb-6">
+        <div className="mb-2">
           <h3 className="text-xl font-bold">{requirement.short_description}</h3>
-          <p className="text-sm text-gray-500">
-            {requirement.is_active ? (
-              <span className="text-green-500 text-sm">Active</span>
-            ) : (
-              <span className="text-red-500 text-sm">Inactive</span>
-            )}
-          </p>
         </div>
-        <div className="mb-5">
-          <span className="font-semibold">Category:</span>
-          {category ? <p>{category.category_name}</p> : <p>Loading...</p>}
-        </div>
-        <div className="mb-5">
-          <span className="font-semibold">Detailed Description:</span>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
-        </div>
-        <div className="mb-5">
-          <span className="font-semibold">Story Link:</span>
-          <br />
-          {requirement.story_link ? (
-            <a
-              href={requirement.story_link}
-              target="_blank"
-              rel="noreferrer"
-              className="text-indigo-700 hover:text-indigo-900"
+        <div className="mx-3">
+          <div className="mb-3">
+            <span className="font-semibold">Detailed Description:</span>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
+          </div>
+          <div>
+            <button
+              onClick={() =>
+                areDetailsOpen
+                  ? setAreDetailsOpen(false)
+                  : setAreDetailsOpen(true)
+              }
+              className="text-indigo-500 mb-1 hover:text-indigo-600"
             >
-              {requirement.story_link}
-            </a>
-          ) : (
-            "No story link provided"
-          )}
-        </div>
-        <div className="mb-5">
-          <span className="font-semibold">Created At:</span>
-          <p>{new Date(requirement.createdAt).toLocaleString()}</p>
-          <br />
-          <span className="font-semibold">Created By:</span>
-          <p>
-            {createdUser
-              ? createdUser.first_name + " " + createdUser.last_name
-              : "Loading..."}
-          </p>
-        </div>
-        <div className="mb-5">
-          <Link
-            to="#"
-            onClick={openModal}
-            className="text-indigo-500 hover:text-indigo-600"
-          >
-            View Update Log
-          </Link>
-        </div>
-        <div className="mb-5">
-          <Link
-            to={`/requirement/edit/${requirement._id}`}
-            className="w-full text-white bg-indigo-700 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-          >
-            Edit requirement
-          </Link>
+              {" "}
+              {areDetailsOpen ? "Hide" : "Show"} Details
+            </button>
+            {areDetailsOpen && (
+              <div className="mb-5">
+                {requirement.story_link ? (
+                  <div className="mb-3">
+                    <span className="font-semibold">Story Link:</span>
+                    <br />
+                    <a
+                      href={requirement.story_link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-indigo-700 hover:text-indigo-900"
+                    >
+                      {requirement.story_link}
+                    </a>
+                  </div>
+                ) : null}
+                <p>
+                  <span className="font-semibold">Category: </span>
+                  {category ? category.category_name : "Loading..."}
+                </p>
+                <p>
+                  <span className="font-semibold">Created by: </span>
+                  {createdUser
+                    ? createdUser.first_name + " " + createdUser.last_name
+                    : "Loading..."}
+                </p>
+                <p className="mb-2">
+                  <span className="font-semibold">Created at:</span>{" "}
+                  {new Date(requirement.createdAt).toLocaleString()}
+                </p>
+                {(requirement.updated_by.length > 0 && (
+                  <Link
+                    to="#"
+                    onClick={openModal}
+                    className="text-indigo-500 hover:text-indigo-600"
+                  >
+                    View Update Log
+                  </Link>
+                )) || <p>No updates</p>}
+                <p>
+                  {requirement.is_active ? (
+                    <span className="text-green-500 text-sm">Active</span>
+                  ) : (
+                    <span className="text-red-500 text-sm">Inactive</span>
+                  )}
+                </p>
+                <br />
+                <Link
+                  to={`/requirement/edit/${requirement._id}`}
+                  className="w-full text-white bg-indigo-700 hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                  Edit requirement
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <UpdateLogModal
@@ -140,7 +156,7 @@ RequirementListing.propTypes = {
       })
     ).isRequired,
     story_link: PropTypes.string,
-    createdAt: PropTypes.string.isRequired, // Add this line
+    createdAt: PropTypes.string.isRequired,
   }).isRequired,
 };
 
