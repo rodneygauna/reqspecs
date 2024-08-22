@@ -88,13 +88,6 @@ const App = () => {
     // If the response is ok, return the data
     return data;
   };
-  // Logout User
-  const logoutUser = () => {
-    // Remove the token from session storage
-    localStorage.removeItem("token");
-    localStorage.removeItem("current_user_id");
-    window.dispatchEvent(new Event("storage"));
-  };
 
   // Add Company
   const addCompany = async ({ company_name, is_active }) => {
@@ -307,7 +300,6 @@ const App = () => {
           path="/register"
           element={<RegisterPage userRegisterSubmit={registerUser} />}
         />
-        <Route path="/logout" element={<HomePage logoutUser={logoutUser} />} />
         <Route
           path="/company/add"
           element={<CompanyAddPage companyAddSubmit={addCompany} />}
