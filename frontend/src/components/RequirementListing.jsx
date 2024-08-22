@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import UpdateLogModal from "./RequirementHistoryLog";
 
 const RequirementListing = ({ requirement }) => {
+  const description = requirement.detailed_description;
+
   const [category, setCategory] = useState("");
   const [createdUser, setCreatedUser] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,7 +68,7 @@ const RequirementListing = ({ requirement }) => {
         </div>
         <div className="mb-5">
           <span className="font-semibold">Detailed Description:</span>
-          <p>{requirement.detailed_description} </p>
+          <div dangerouslySetInnerHTML={{ __html: description }} />
         </div>
         <div className="mb-5">
           <span className="font-semibold">Story Link:</span>

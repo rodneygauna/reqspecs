@@ -3,6 +3,9 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 import ProjectDropdown from "../../components/ProjectDropdown";
 import CategoryDropdown from "../../components/CategoryDropdown";
 
@@ -60,7 +63,7 @@ const RequirementEditPage = ({ requirementEditSubmit }) => {
   return (
     <section className="bg-gray-50">
       <div className="">
-        <div className="w-full md:mt-0 sm:max-w-md xl:p-0">
+        <div className="">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
               Update Requirement
@@ -89,16 +92,46 @@ const RequirementEditPage = ({ requirementEditSubmit }) => {
                   htmlFor="detailed_description"
                   className="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Detailed Description
+                  Detailed Description &nbsp;
+                  {
+                    // Add a tooltip that explains that the user can copy the text from Quill editor and paste into Jira
+                    <span className="text-xs text-gray-500">
+                      (You can copy the text from here and paste into Jira)
+                    </span>
+                  }
                 </label>
-                <textarea
-                  name="detailed_description"
-                  id="detailed_description"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Detailed description"
-                  required=""
+                <ReactQuill
+                  theme="snow"
                   value={detailed_description}
-                  onChange={(e) => setDetailedDescription(e.target.value)}
+                  onChange={setDetailedDescription}
+                  modules={{
+                    toolbar: [
+                      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                      ["bold", "italic", "underline", "strike", "blockquote"],
+                      [
+                        { list: "ordered" },
+                        { list: "bullet" },
+                        { indent: "-1" },
+                        { indent: "+1" },
+                      ],
+                      ["code-block"],
+                      ["clean"],
+                    ],
+                  }}
+                  formats={[
+                    "header",
+                    "bold",
+                    "italic",
+                    "underline",
+                    "strike",
+                    "blockquote",
+                    "list",
+                    "bullet",
+                    "indent",
+                    "code-block",
+                  ]}
+                  placeholder="Detailed description..."
+                  required=""
                 />
               </div>
               <div>
