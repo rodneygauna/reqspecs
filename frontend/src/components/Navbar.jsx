@@ -17,6 +17,13 @@ const Navbar = () => {
     }
   };
 
+  // Logout logic
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("current_user_id");
+    setIsAuthenticated(false);
+  };
+
   useEffect(() => {
     checkAuth();
 
@@ -67,9 +74,13 @@ const Navbar = () => {
                     <NavLink to="/projects" className={linkClass}>
                       Projects
                     </NavLink>
-                    <NavLink to="/logout" className={linkClass}>
+                    <a
+                      href="/"
+                      className="text-white hover:bg-indigo-900 hover:text-white rounded-md px-3 py-2"
+                      onClick={logout}
+                    >
                       Logout
-                    </NavLink>
+                    </a>
                   </>
                 )}
                 {!isAuthenticated && (
