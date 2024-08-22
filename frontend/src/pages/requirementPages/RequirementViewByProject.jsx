@@ -14,7 +14,7 @@ const RequirementViewByProject = () => {
   const [categories, setCategories] = useState({});
   const [groupedRequirements, setGroupedRequirements] = useState({});
   const [collapsedCategories, setCollapsedCategories] = useState({});
-  const [allCollapsed, setAllCollapsed] = useState(false); // State for global collapse/expand
+  const [allCollapsed, setAllCollapsed] = useState(false);
 
   useEffect(() => {
     // Fetch categories from the API
@@ -142,9 +142,7 @@ const RequirementViewByProject = () => {
                 </div>
                 <div
                   className={`transition-max-height duration-300 ease-in-out overflow-hidden ${
-                    collapsedCategories[categoryName]
-                      ? "max-h-0"
-                      : "max-h-screen"
+                    collapsedCategories[categoryName] ? "max-h-0" : ""
                   }`}
                 >
                   {groupedRequirements[categoryName].map((requirement) => (
