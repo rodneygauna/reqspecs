@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import {
   requiredString,
   optionalString,
+  requiredNumberMinMax,
 } from "../utils/validation/validationConstants.js";
 
 const requirementSchema = new mongoose.Schema(
@@ -45,6 +46,8 @@ const requirementSchema = new mongoose.Schema(
         },
       },
     ],
+    // Requirement Rank
+    rank: requiredNumberMinMax("Rank", 1, 9999),
   },
   {
     timestamps: true,
