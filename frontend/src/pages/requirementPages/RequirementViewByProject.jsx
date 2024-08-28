@@ -1,9 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import {
-  FaArrowLeft,
-  FaArrowCircleDown,
-  FaArrowCircleUp,
-} from "react-icons/fa";
+import { FaArrowLeft, FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -36,17 +32,22 @@ const RequirementViewByProject = () => {
   }, []);
 
   useEffect(() => {
-    // Group requirements by category name
+    // Group requirements by category name and sort by rank
     const groupRequirements = () => {
       const grouped = project.reduce((acc, requirement) => {
-        const categoryName =
-          categories[requirement.category] || "Uncategorized";
+        const categoryName = categories[requirement.category] || "Uncategorized";
         if (!acc[categoryName]) {
           acc[categoryName] = [];
         }
         acc[categoryName].push(requirement);
         return acc;
       }, {});
+
+      // Sort each category's requirements by rank
+      Object.keys(grouped).forEach((categoryName) => {
+        grouped[categoryName].sort((a, b) => a.rank - b.rank);
+      });
+
       setGroupedRequirements(grouped);
     };
 
@@ -65,13 +66,10 @@ const RequirementViewByProject = () => {
   const toggleAllCategories = () => {
     const newCollapsedState = !allCollapsed;
     setAllCollapsed(newCollapsedState);
-    const updatedCollapsedCategories = Object.keys(groupedRequirements).reduce(
-      (acc, categoryName) => {
-        acc[categoryName] = newCollapsedState;
-        return acc;
-      },
-      {}
-    );
+    const updatedCollapsedCategories = Object.keys(groupedRequirements).reduce((acc, categoryName) => {
+      acc[categoryName] = newCollapsedState;
+      return acc;
+    }, {});
     setCollapsedCategories(updatedCollapsedCategories);
   };
 

@@ -12,6 +12,7 @@ import CategoryDropdown from "../../components/CategoryDropdown";
 const RequirementAddPage = ({ requirementAddSubmit }) => {
   // Form state
   const [short_description, setShortDescription] = useState("");
+  const [rank, setRank] = useState("");
   const [detailed_description, setDetailedDescription] = useState("");
   const [story_link, setStoryLink] = useState("");
   const [category, setCategoryID] = useState("");
@@ -26,6 +27,7 @@ const RequirementAddPage = ({ requirementAddSubmit }) => {
 
     const requirementData = {
       short_description,
+      rank,
       detailed_description,
       story_link,
       is_active: true,
@@ -70,6 +72,24 @@ const RequirementAddPage = ({ requirementAddSubmit }) => {
                   required=""
                   value={short_description}
                   onChange={(e) => setShortDescription(e.target.value)}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="rank"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Rank
+                </label>
+                <input
+                  type="number"
+                  name="rank"
+                  id="rank"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="1"
+                  required=""
+                  value={rank}
+                  onChange={(e) => setRank(e.target.value)}
                 />
               </div>
               <div>

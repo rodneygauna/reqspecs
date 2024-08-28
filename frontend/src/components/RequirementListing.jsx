@@ -54,7 +54,14 @@ const RequirementListing = ({ requirement }) => {
     <div className="bg-white rounded-xl shadow-md relative">
       <div className="p-4">
         <div className="mb-2">
-          <h3 className="text-xl font-bold">{requirement.short_description}</h3>
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold">
+              {requirement.short_description}
+            </h2>
+            <span className="text-sm text-gray-500">
+              Rank: {requirement.rank}
+            </span>
+          </div>
         </div>
         <div className="mx-3">
           <div className="mb-3">
@@ -157,6 +164,7 @@ RequirementListing.propTypes = {
     ).isRequired,
     story_link: PropTypes.string,
     createdAt: PropTypes.string.isRequired,
+    rank: PropTypes.number.isRequired,
   }).isRequired,
 };
 

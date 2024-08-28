@@ -17,6 +17,7 @@ const RequirementEditPage = ({ requirementEditSubmit }) => {
   const [short_description, setShortDescription] = useState(
     requirement.short_description
   );
+  const [rank, setRank] = useState(requirement.rank);
   const [detailed_description, setDetailedDescription] = useState(
     requirement.detailed_description
   );
@@ -35,6 +36,7 @@ const RequirementEditPage = ({ requirementEditSubmit }) => {
     const requirementData = {
       _id: requirement._id,
       short_description,
+      rank,
       detailed_description,
       story_link,
       is_active,
@@ -85,6 +87,23 @@ const RequirementEditPage = ({ requirementEditSubmit }) => {
                   required=""
                   value={short_description}
                   onChange={(e) => setShortDescription(e.target.value)}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="rank"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Rank
+                </label>
+                <input
+                  type="number"
+                  name="rank"
+                  id="rank"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required=""
+                  value={rank}
+                  onChange={(e) => setRank(e.target.value)}
                 />
               </div>
               <div>
